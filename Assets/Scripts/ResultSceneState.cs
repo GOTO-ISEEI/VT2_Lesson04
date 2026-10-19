@@ -1,34 +1,26 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class ResultSceneState : MonoBehaviour, IState
+public class ResultSceneState : BaseSceneState
 {
-    private SceneManager _sceneManager;
+    public override string HudAddress { get; protected set; } = "Assets/Prefabs/ResultHud.prefab";
 
-    void Start()
+    public override void Enter()
     {
+        base.Enter();
+
         SceneManager.LoadScene("ResultScene");
     }
 
-    void IState.Enter()
+    public override void Execute()
     {
-        // 状態の初期処理
-        Debug.Log($"{this.GetType().Name}が開始されました");
-        _sceneManager = Object.FindAnyObjectByType<SceneManager>();
-    }
-
-    void IState.Execute()
-    {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             _sceneManager.ChangeScene(new TitleSceneState());
         }
-    }
 
-    void IState.Exit()
-    {
-        // 状態の終了処理
-        Debug.Log($"{this.GetType().Name}が終了しました");
+        base.Execute();
     }
 }

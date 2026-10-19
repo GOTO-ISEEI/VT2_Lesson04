@@ -2,12 +2,24 @@ using UnityEngine;
 
 public class SceneManager : MonoBehaviour
 {
+    public static SceneManager Instance { get; private set; }       // シングルトンインスタンス
     private IState _currentSceneState;      // 現在実行中のシーン
+
+    void Awake()
+    {
+        // SceneManagerが存在しているかチェック
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
-        DontDestroyOnLoad(gameObject);                  // シーン遷移時に破棄されないようにする
-
         _currentSceneState = new TitleSceneState();     // 初期状態をタイトルシーンに設定
         _currentSceneState .Enter();                    // タイトルシーンのEnterメソッドを呼び出す
     }

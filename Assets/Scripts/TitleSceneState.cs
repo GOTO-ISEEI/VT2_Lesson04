@@ -1,33 +1,26 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static IState;
 
-public class TitleSceneState : MonoBehaviour, IState
+public class TitleSceneState : BaseSceneState
 {
-    private SceneManager _sceneManager;
+    public override string HudAddress { get; protected set; } = "Assets/Prefabs/TitleHud.prefab";
 
-    void Start()
+    public override async void Enter()
     {
+        base.Enter();
+
         SceneManager.LoadScene("TitleScene");
     }
 
-    void IState.Enter()
+    public override void Execute()
     {
-        // 状態の初期処理
-        Debug.Log($"{this.GetType().Name}が開始されました");
-        _sceneManager = Object.FindAnyObjectByType<SceneManager>();
-    }
-
-    void IState.Execute()
-    {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             _sceneManager.ChangeScene(new GameSceneState());
         }
-    }
 
-    void IState.Exit()
-    {
-        // 状態の終了処理
-        Debug.Log($"{this.GetType().Name}が終了しました");
+        base.Execute();
     }
 }

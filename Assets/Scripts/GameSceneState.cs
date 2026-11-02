@@ -13,7 +13,7 @@ public class GameSceneState : BaseSceneState
     }
     public override void Execute()
     {
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             //SceneManager.LoadScene("ResultScene");
             _sceneManager.ChangeScene(new ResultSceneState());

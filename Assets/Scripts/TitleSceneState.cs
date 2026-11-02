@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.Impl;
 using static IState;
 
 public class TitleSceneState : BaseSceneState
@@ -9,7 +10,12 @@ public class TitleSceneState : BaseSceneState
 
     private TitleHUDController _hudController;
 
-    private int _score;     // スコア
+    private int _score;
+    public int Score { get { return _score; } }
+
+    private int _maxScore = 10;
+    public int MaxScore { get { return _maxScore; } }
+
     public override async void Enter()
     {
         base.Enter();
@@ -22,7 +28,7 @@ public class TitleSceneState : BaseSceneState
 
     public override void Execute()
     {
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             //SceneManager.LoadScene("GameScene");
             _sceneManager.ChangeScene(new GameSceneState());
@@ -34,6 +40,6 @@ public class TitleSceneState : BaseSceneState
     public void AddScore()
     {
         _score++;
-        Debug.Log($"Score: {_score}");
+        Debug.Log($"スコア: {_score}");
     }
 }

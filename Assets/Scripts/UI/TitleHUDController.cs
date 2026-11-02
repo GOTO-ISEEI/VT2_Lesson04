@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TitleHUDController
 {
-    private TitleHUDView _view;                // タイトルHUDのビュー＾
+    private TitleHUDView _view;                 // タイトルHUDのビュー
     private TitleSceneState _sceneState;        // タイトルシーンの状態
 
     // コンストラクタ
@@ -18,9 +18,9 @@ public class TitleHUDController
     private void OnClickButtonRequest()
     {
         _sceneState.AddScore();
+        _view.UpdateScoreText(_sceneState.Score);
+        _view.UpdateSliderValue(_sceneState.Score, _sceneState.MaxScore);
     }
-
-
 }
 
 

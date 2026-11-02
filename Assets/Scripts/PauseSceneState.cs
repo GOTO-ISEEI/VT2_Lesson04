@@ -13,7 +13,7 @@ public class PauseSceneState : BaseSceneState
     }
     public override void Execute()
     {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             //SceneManager.LoadScene("GameScene");
             _sceneManager.ChangeScene(new GameSceneState());

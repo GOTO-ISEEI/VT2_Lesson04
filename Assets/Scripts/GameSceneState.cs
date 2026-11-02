@@ -10,18 +10,18 @@ public class GameSceneState : BaseSceneState
     public override void Enter()
     {
         base.Enter();
-
-        SceneManager.LoadScene("GameScene");
     }
     public override void Execute()
     {
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
+            //SceneManager.LoadScene("ResultScene");
             _sceneManager.ChangeScene(new ResultSceneState());
         }
 
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
+            //SceneManager.LoadScene("PauseScene");
             _sceneManager.ChangeScene(new PauseSceneState());
         }
 

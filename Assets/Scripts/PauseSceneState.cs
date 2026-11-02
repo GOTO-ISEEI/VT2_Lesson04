@@ -10,13 +10,12 @@ public class PauseSceneState : BaseSceneState
     public override void Enter()
     {
         base.Enter();
-
-        SceneManager.LoadScene("PauseScene");
     }
     public override void Execute()
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
+            //SceneManager.LoadScene("GameScene");
             _sceneManager.ChangeScene(new GameSceneState());
         }
     }

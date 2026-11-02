@@ -38,6 +38,6 @@ public class SceneManager : MonoBehaviour
 
     public static void LoadScene(string sceneName)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);      // 指定されたシーンをロードする
+        //UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);      // 指定されたシーンをロードする
     }
 }

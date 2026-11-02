@@ -16,6 +16,7 @@ public abstract class BaseSceneState : IState
 
     // HUDのプレハブのアドレスを入力
     public abstract string HudAddress { get; protected set; }
+    protected GameObject _hudCanvas;
 
     public virtual void Enter()
     {
@@ -26,7 +27,7 @@ public abstract class BaseSceneState : IState
 
         // プレハブのロード
         GameObject hudPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(HudAddress);
-        GameObject.Instantiate(hudPrefab);
+        _hudCanvas = GameObject.Instantiate(hudPrefab);
     }
     public virtual void Execute()
     {
@@ -36,6 +37,8 @@ public abstract class BaseSceneState : IState
     {
         // 状態の終了処理
         Debug.Log($"{this.GetType().Name}が終了しました");
+
+        GameObject.Destroy(_hudCanvas);
     }
 }
 

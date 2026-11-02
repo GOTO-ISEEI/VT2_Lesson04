@@ -10,14 +10,13 @@ public class ResultSceneState : BaseSceneState
     public override void Enter()
     {
         base.Enter();
-
-        SceneManager.LoadScene("ResultScene");
     }
 
     public override void Execute()
     {
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
+            //SceneManager.LoadScene("TitleScene");
             _sceneManager.ChangeScene(new TitleSceneState());
         }
 
